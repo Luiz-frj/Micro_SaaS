@@ -35,9 +35,10 @@ CREATE TABLE Servico(
     nome VARCHAR(100) NOT NULL,
     preco DOUBLE NOT NULL,
     descricao VARCHAR(100),
-    dia DATE,
+    id_diponibilidade INT NOT NULL,
     horario DATETIME,
-    STATUS ENUM('Aberto', 'Fechado') DEFAULT 'Aberto',
+    status_horario ENUM('Disponivel', 'Indisponivel') DEFAULT 'Disponivel',
+    status_servico ENUM('Aceito', 'Recusado') DEFAULT 'Aceito',
     
     FOREIGN KEY (id_prestador) REFERENCES Prestador(id_prestador)
 );
@@ -53,6 +54,7 @@ CREATE TABLE Disponibilidade(
     tempo_servico TIME NOT NULL,
     
     FOREIGN KEY (id_prestador) REFERENCES Prestador(id_prestador),
+    FOREIGN KEY (id_disponibilidade) REFERENCES Servico(id_diponibilidade),
     UNIQUE(id_prestador, dia_semana, comeco_descanso, fim_descanso, inicio_servico, fim_servico, tempo_servico)
 );
 
