@@ -2,6 +2,7 @@ package br.edu.ifsp.MicroSaaS.controller.command;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -21,10 +22,12 @@ import br.edu.ifsp.MicroSaaS.dao.PrestadorDAOImpl;
 import br.edu.ifsp.MicroSaaS.model.Prestador;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 2, maxRequestSize = 1024 * 1024 * 2)
 public class SignPrestadorCommand implements Command {
 
 	@Override
@@ -36,7 +39,7 @@ public class SignPrestadorCommand implements Command {
 		PrestadorDAO dao = new PrestadorDAOFactory().factory();
 
 		String name = request.getParameter("name");
-		String user = request.getParameter("user");
+		String user = request.getParameter("username");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
@@ -48,11 +51,11 @@ public class SignPrestadorCommand implements Command {
 		}
 		String nomeArquivo = UUID.randomUUID().toString() + "_"
 				+ Paths.get(fotoPart.getSubmittedFileName()).getFileName().toString();
-		String uploadPath = "/home/aluno/eclipse-workspace/MicroSaaS/uploads";
+		String uploadPath = "C:\\Users\\guilh\\Documents\\Micro_SaaS\\uploads";
 		Files.createDirectories(Paths.get(uploadPath));
 		fotoPart.write(uploadPath + File.separator + nomeArquivo);
 		
-		Prestador prestador = new Prestador(name, user, email, phone, password, cpf, uploadPath + File.separator + nomeArquivo, false);
+		Prestador prestador = new Prestador(name, user, email, phone, password, cpf, uploadPath + File.separator + nomeArquivo, true);
 		
 		if (dao.insert(prestador)) {
 			request.setAttribute("msg", "O seu usuário foi criado com sucesso");
@@ -60,7 +63,7 @@ public class SignPrestadorCommand implements Command {
 		}
 		request.setAttribute("msg", "Não foi possível criar um novo usuário");
 		
-		return "front.do?action=home";
+		return "front.do?action=index";
 	}
 
 }

@@ -2,20 +2,17 @@ package br.edu.ifsp.MicroSaaS.controller;
 
 import java.io.IOException;
 
-import br.edu.ifsp.MicroSaaS.controller.command.Command;
-import br.edu.ifsp.MicroSaaS.controller.command.FormSignClienteCommand;
-import br.edu.ifsp.MicroSaaS.controller.command.FormSignPrestadorCommand;
-import br.edu.ifsp.MicroSaaS.controller.command.HomeCommand;
-import br.edu.ifsp.MicroSaaS.controller.command.SignClienteCommand;
-import br.edu.ifsp.MicroSaaS.controller.command.SignPrestadorCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/front.do")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 2, maxRequestSize = 1024 * 1024 * 2)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,13 +33,17 @@ public class FrontServlet extends HttpServlet {
 		} else if("signPrestador".equals(action)) {
 			command = new SignPrestadorCommand();
 		} else if("loginCliente".equals(action)) {
+			command = new LoginClienteCommand();
 		} else if("loginPrestador".equals(action)) {
+			command = new LoginPrestadorCommand();
 		} else if("formSignCliente".equals(action)) {
 			command = new FormSignClienteCommand();
 		} else if("formSignPrestador".equals(action)) {
 			command = new FormSignPrestadorCommand();
 		} else if("formLoginPrestador".equals(action)) {
-		} else if("formLoginPrestador".equals(action)) {
+			command = new FormLoginPrestadorCommand();
+		} else if("formLoginCliente".equals(action)) {
+			command = new FormLoginClienteCommand();
 		} else {
 			command = new HomeCommand();
 		}

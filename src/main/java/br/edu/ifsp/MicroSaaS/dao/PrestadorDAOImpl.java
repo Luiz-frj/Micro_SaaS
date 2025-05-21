@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.MicroSaaS.dao.connection.DatabaseConnection;
+import br.edu.ifsp.MicroSaaS.model.Cliente;
 import br.edu.ifsp.MicroSaaS.model.Prestador;
 
 public class PrestadorDAOImpl implements PrestadorDAO {
 	private static final String INSERT = "INSERT INTO Prestador (nome, email, usuário, telefone, senha, cpf, caminho_img) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_BY_EMAIL = "SELECT * FROM Prestador WHERE email = ?";
 	
 	@Override
 	public boolean insert(Prestador prestador) {
@@ -38,8 +40,22 @@ public class PrestadorDAOImpl implements PrestadorDAO {
 	}
 
 	@Override
-	public Prestador getByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public Prestador getByEmail(String email) {
+		Prestador user = null;
+		try ( Connection connection = DatabaseConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(GET_BY_EMAIL)) {
+			
+			statement.setString(1, email);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				user = new Prestador(resultSet.getString("nome"), resultSet.getString("usuário"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), resultSet.getString("cpf"), resultSet.getString("caminho_img"), false);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+			user = null;
+		} 
+			
+		return user;
 	}
 }

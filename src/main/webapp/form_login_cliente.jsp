@@ -12,14 +12,14 @@
 <body>
   <div class="container form-container">
     <h2 class="text-center mb-4">Login</h2>
-    <form>
+    <form action="front.do?action=loginCliente" method="post">
       <div class="mb-3">
         <label for="email" class="form-label">E-mail</label>
-        <input type="email" class="form-control" id="email" required>
+        <input type="email" class="form-control" name="email" id="email" required>
       </div>
       <div class="mb-3">
         <label for="senha" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="senha" required>
+        <input type="password" class="form-control" name="password" id="password" required>
       </div>
       <button type="submit" class="btn btn-primary w-100">Entrar</button>
     </form>

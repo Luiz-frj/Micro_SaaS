@@ -5,7 +5,7 @@ USE SaaS;
 CREATE TABLE Cliente(
 	id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
-    senha VARCHAR(50) NOT NULL,
+    senha VARCHAR(256) NOT NULL,
     nome VARCHAR(100) NOT NULL,
     usuário VARCHAR(100) NOT NULL UNIQUE,
     telefone VARCHAR(50) NOT NULL UNIQUE
@@ -14,11 +14,12 @@ CREATE TABLE Cliente(
 CREATE TABLE Prestador(
 	id_prestador INT AUTO_INCREMENT PRIMARY KEY,
 	email VARCHAR(100) NOT NULL UNIQUE,
-    senha VARCHAR(50) NOT NULL,
+    senha VARCHAR(256) NOT NULL,
     nome VARCHAR(100) NOT NULL,
     usuário VARCHAR(100) NOT NULL,
     cpf VARCHAR(100) NOT NULL UNIQUE,
-    caminho_img VARCHAR(255)
+    caminho_img VARCHAR(255),
+    telefone VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE Disponibilidade(

@@ -1,12 +1,6 @@
 package br.edu.ifsp.MicroSaaS.controller.command;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 
 import br.edu.ifsp.MicroSaaS.dao.ClienteDAO;
 import br.edu.ifsp.MicroSaaS.dao.ClienteDAOFactory;
@@ -16,30 +10,31 @@ import br.edu.ifsp.MicroSaaS.model.Cliente;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.HttpSession;
 
-public class SignClienteCommand implements Command {
+public class LoginClienteCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		ClienteDAO dao = new ClienteDAOFactory().factory();
-
-		String name = request.getParameter("name");
-		String user = request.getParameter("username");
+		
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
-
-		Cliente cliente = new Cliente(name, user, email, phone, password, true);
 		
-		if (dao.insert(cliente)) {
-			request.setAttribute("msg", "O seu usuário foi criado com sucesso");
-			return "front.do?action=home";
+		Cliente user = dao.getByEmail(email);
+		
+		if (user != null) {
+		
+			if (user.verify(password)) { // verifica se a senha passada pelo usuário (criptografando-a) é a mesma que está armazenada seu usuário, que foi recebido pelo banco de dados sem ter sua senha criptografada novamente
+				HttpSession session = request.getSession(true);
+				session.setAttribute("user", user);
+				session.setMaxInactiveInterval(3600);
+				return "logged.do?action=home";
+			}
 		}
-		request.setAttribute("msg", "Não foi possível criar um novo usuário");
-		
+		request.setAttribute("msg", "Não foi possível entrar na sua conta");
 		return "front.do?action=home";
 	}
 

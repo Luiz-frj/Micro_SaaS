@@ -6,5 +6,5 @@ import br.edu.ifsp.MicroSaaS.model.Prestador;
 
 public interface PrestadorDAO {
 	boolean insert(Prestador prestador);
-	Prestador getByName(String name);
+	Prestador getByEmail(String email);
 }

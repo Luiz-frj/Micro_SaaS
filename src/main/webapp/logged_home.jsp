@@ -20,6 +20,7 @@
       </ul>
     </div>
     <div>
+    <a href="logged.do?action=logoff">Sair da conta</a>
       <h5>Cadastrar Novo Horário</h5>
       <form class="row g-3">
         <div class="col-md-6">

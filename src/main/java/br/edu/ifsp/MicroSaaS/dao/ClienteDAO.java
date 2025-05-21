@@ -8,5 +8,5 @@ import br.edu.ifsp.MicroSaaS.model.Prestador;
 
 public interface ClienteDAO {
 	boolean insert(Cliente cliente);
-	Cliente getByName(String name);
+	Cliente getByEmail(String email);
 }

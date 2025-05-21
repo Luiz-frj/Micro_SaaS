@@ -6,13 +6,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class FormLoginClienteCommand implements Command{
+public class LoggedHomeCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "form_login_cliente.jsp";
+		return "logged_home.jsp";
 	}
 
 }
