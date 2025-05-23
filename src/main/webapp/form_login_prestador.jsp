@@ -22,6 +22,7 @@
         <input type="password" class="form-control" name="password" id="password" required>
       </div>
       <button type="submit" class="btn btn-primary w-100">Entrar</button>
+      <a href="front.do?action=formSignPrestador" >Não possui uma conta, clique para Cadastrar</a>
     </form>
   </div>
 </body>

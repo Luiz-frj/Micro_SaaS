@@ -12,7 +12,7 @@ import br.edu.ifsp.MicroSaaS.model.Cliente;
 import br.edu.ifsp.MicroSaaS.model.Prestador;
 
 public class ClienteDAOImpl implements ClienteDAO {
-	private static final String INSERT = "INSERT INTO Cliente (nome, email, usuário, telefone, senha) VALUES (?, ?, ?, ?, ?)";
+	private static final String INSERT = "INSERT INTO Cliente (nome, email, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_BY_EMAIL = "SELECT * FROM Cliente WHERE email = ?";
 	
 	@Override
@@ -46,7 +46,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 			statement.setString(1, email);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				user = new Cliente(resultSet.getString("nome"), resultSet.getString("usuário"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), false);
+				user = new Cliente(resultSet.getString("nome"), resultSet.getString("endereco"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), false);
 			}
 				
 		} catch (SQLException e) {

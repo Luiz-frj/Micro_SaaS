@@ -35,7 +35,7 @@ public class LoginClienteCommand implements Command{
 			}
 		}
 		request.setAttribute("msg", "Não foi possível entrar na sua conta");
-		return "front.do?action=home";
+		return "front.do?action=formLoginCliente";
 	}
 
 }

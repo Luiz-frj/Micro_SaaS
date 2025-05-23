@@ -1,4 +1,4 @@
-<%-- index.jsp - Página Inicial --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,6 +10,10 @@
   <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Conteúdo da Landing Page -->
+    <div class="container">
+        <h1>Bem-vindo</h1>
+        <a href="front.do?action=formLoginCliente" class="btn">Painel do Cliente</a>
+        <a href="front.do?action=formLoginPrestador" class="btn">Painel do Prestador</a>
+    </div>
 </body>
 </html>
