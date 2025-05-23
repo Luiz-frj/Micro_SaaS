@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import br.edu.ifsp.MicroSaaS.controller.command.*;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.LoggedHomeCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.LogoffCommand;
 
 @WebServlet("/logged.do")
 public class LoggedServlet extends HttpServlet {

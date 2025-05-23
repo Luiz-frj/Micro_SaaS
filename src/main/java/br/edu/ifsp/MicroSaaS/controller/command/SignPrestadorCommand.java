@@ -15,10 +15,10 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import br.edu.ifsp.MicroSaaS.dao.ClienteDAO;
-import br.edu.ifsp.MicroSaaS.dao.ClienteDAOFactory;
 import br.edu.ifsp.MicroSaaS.dao.PrestadorDAO;
-import br.edu.ifsp.MicroSaaS.dao.PrestadorDAOFactory;
-import br.edu.ifsp.MicroSaaS.dao.PrestadorDAOImpl;
+import br.edu.ifsp.MicroSaaS.dao.factory.ClienteDAOFactory;
+import br.edu.ifsp.MicroSaaS.dao.factory.PrestadorDAOFactory;
+import br.edu.ifsp.MicroSaaS.dao.impl.PrestadorDAOImpl;
 import br.edu.ifsp.MicroSaaS.model.Prestador;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

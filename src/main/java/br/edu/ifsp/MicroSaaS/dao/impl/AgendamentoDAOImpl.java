@@ -1,4 +1,4 @@
-package br.edu.ifsp.MicroSaaS.dao;
+package br.edu.ifsp.MicroSaaS.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifsp.MicroSaaS.dao.AgendamentoDAO;
 import br.edu.ifsp.MicroSaaS.dao.connection.DatabaseConnection;
 import br.edu.ifsp.MicroSaaS.model.Agendamento;
 import br.edu.ifsp.MicroSaaS.model.Disponibilidade;

@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 import br.edu.ifsp.MicroSaaS.dao.ClienteDAO;
-import br.edu.ifsp.MicroSaaS.dao.ClienteDAOFactory;
 import br.edu.ifsp.MicroSaaS.dao.PrestadorDAO;
-import br.edu.ifsp.MicroSaaS.dao.PrestadorDAOFactory;
+import br.edu.ifsp.MicroSaaS.dao.factory.ClienteDAOFactory;
+import br.edu.ifsp.MicroSaaS.dao.factory.PrestadorDAOFactory;
 import br.edu.ifsp.MicroSaaS.model.Cliente;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

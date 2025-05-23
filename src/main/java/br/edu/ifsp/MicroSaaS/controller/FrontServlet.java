@@ -3,6 +3,11 @@ package br.edu.ifsp.MicroSaaS.controller;
 import java.io.IOException;
 
 import br.edu.ifsp.MicroSaaS.controller.command.*;
+import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormLoginClienteCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormLoginPrestadorCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormSignClienteCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormSignPrestadorCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.redirect.HomeCommand;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;

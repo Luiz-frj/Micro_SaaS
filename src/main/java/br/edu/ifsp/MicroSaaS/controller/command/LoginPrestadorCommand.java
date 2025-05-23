@@ -3,9 +3,9 @@ package br.edu.ifsp.MicroSaaS.controller.command;
 import java.io.IOException;
 
 import br.edu.ifsp.MicroSaaS.dao.ClienteDAO;
-import br.edu.ifsp.MicroSaaS.dao.ClienteDAOFactory;
 import br.edu.ifsp.MicroSaaS.dao.PrestadorDAO;
-import br.edu.ifsp.MicroSaaS.dao.PrestadorDAOFactory;
+import br.edu.ifsp.MicroSaaS.dao.factory.ClienteDAOFactory;
+import br.edu.ifsp.MicroSaaS.dao.factory.PrestadorDAOFactory;
 import br.edu.ifsp.MicroSaaS.model.Cliente;
 import br.edu.ifsp.MicroSaaS.model.Prestador;
 import jakarta.servlet.ServletException;
