@@ -4,6 +4,8 @@ CREATE DATABASE SaaS;
 
 USE SaaS;
 
+SELECT * FROM Cliente;
+
 CREATE TABLE Cliente(
 	id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -41,7 +43,7 @@ CREATE TABLE PrestadorEspecialidade(
 );
 
 SELECT * FROM Prestador p
-INNER JOIN pe PrestadorEspecialidade ON p.id_prestador=pe.id_prestador;
+INNER JOIN PrestadorEspecialidade pe ON p.id_prestador=pe.id_prestador;
 
 CREATE TABLE Servico(
 	id_servico INT AUTO_INCREMENT UNIQUE,
@@ -62,9 +64,8 @@ CREATE TABLE Disponibilidade(
     fim_descanso TIME NOT NULL,
     inicio_servico TIME NOT NULL,
     fim_servico TIME NOT NULL,
-    tempo_servico TIME NOT NULL,
     
-    UNIQUE(dia_semana, comeco_descanso, fim_descanso, inicio_servico, fim_servico, tempo_servico),
+    UNIQUE(dia_semana, comeco_descanso, fim_descanso, inicio_servico, fim_servico),
 	FOREIGN KEY (id_servico) REFERENCES Servico(id_servico)
 );
 
