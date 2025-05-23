@@ -18,8 +18,8 @@
         <input type="text" class="form-control" name="name" id="name" required>
       </div>
       <div class="mb-3">
-        <label for="username" class="form-label">Usuário</label>
-        <input type="text" class="form-control" name="username" id="username" required>
+        <label for="username" class="form-label">Endereco</label>
+        <input type="text" class="form-control" name="address" id="address" required>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">E-mail</label>

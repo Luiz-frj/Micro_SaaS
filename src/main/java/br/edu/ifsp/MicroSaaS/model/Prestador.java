@@ -90,6 +90,21 @@ public class Prestador {
 		}
 	}
 	
+	public Prestador(int id, String name, String user, String email, String phone, String password, String cpf, String img_dir, Boolean newUser) {
+		setId(id);
+		setName(name);
+		setUser(user);
+		setEmail(email);
+		setPhone(phone);
+		setCpf(cpf);
+		setImg_dir(img_dir);
+		if (newUser) {
+			setPassword(sha256(password));
+		} else {
+			setPassword(password);
+		}
+	}
+	
 	public Boolean verify(String password) {
 		if (sha256(password).equals(this.password)) {
 			return true;

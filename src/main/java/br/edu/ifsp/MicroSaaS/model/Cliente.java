@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 public class Cliente {
 	private int id;
 	private String name;
-	private String user;
+	private String address;
 	private String email;
 	private String phone;
 	private String password;
@@ -14,7 +14,7 @@ public class Cliente {
 		return id;
 	}
 
-	public void setId(int id) {
+	private void setId(int id) {
 		this.id = id;
 	}
 	
@@ -22,23 +22,23 @@ public class Cliente {
 		return name;
 	}
 
-	public void setName(String name) {
+	private void setName(String name) {
 		this.name = name;
 	}
 
-	public String getUser() {
-		return user;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	private void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	private void setEmail(String email) {
 		this.email = email;
 	}
 
@@ -46,7 +46,7 @@ public class Cliente {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	private void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -54,13 +54,13 @@ public class Cliente {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	private void setPassword(String password) {
 		this.password = password;
 	}
 
-	public Cliente(String name, String user, String email, String phone, String password, Boolean newClient) {
+	public Cliente(String name, String address, String email, String phone, String password, Boolean newClient) {
 		setName(name);
-		setUser(user);
+		setAddress(address);
 		setEmail(email);
 		setPhone(phone);
 		if (newClient) {
@@ -100,7 +100,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", name=" + name + ", user=" + user + ", email=" + email + ", phone=" + phone
+		return "Cliente [id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + ", phone=" + phone
 				+ "]";
 	}
 }

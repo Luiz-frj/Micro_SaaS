@@ -27,12 +27,12 @@ public class SignClienteCommand implements Command {
 		ClienteDAO dao = new ClienteDAOFactory().factory();
 
 		String name = request.getParameter("name");
-		String user = request.getParameter("username");
+		String address = request.getParameter("address");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
 
-		Cliente cliente = new Cliente(name, user, email, phone, password, true);
+		Cliente cliente = new Cliente(name, address, email, phone, password, true);
 		
 		if (dao.insert(cliente)) {
 			request.setAttribute("msg", "O seu usuário foi criado com sucesso");

@@ -24,7 +24,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 				
 				statement.setString(1, cliente.getName());
 				statement.setString(2, cliente.getEmail());
-				statement.setString(3, cliente.getUser());
+				statement.setString(3, cliente.getAddress());
 				statement.setString(4, cliente.getPhone());
 				statement.setString(5, cliente.getPassword());
 				
