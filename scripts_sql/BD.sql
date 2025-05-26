@@ -1,10 +1,8 @@
-DROP DATABASE SaaS;
+DROP DATABASE IF EXISTS SaaS;
 
-CREATE DATABASE SaaS;
+CREATE DATABASE IF NOT EXISTS SaaS;
 
 USE SaaS;
-
-SELECT * FROM Cliente;
 
 CREATE TABLE Cliente(
 	id_cliente INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,9 +39,6 @@ CREATE TABLE PrestadorEspecialidade(
     
     PRIMARY KEY (id_prestador, id_especialidade)
 );
-
-SELECT * FROM Prestador p
-INNER JOIN PrestadorEspecialidade pe ON p.id_prestador=pe.id_prestador;
 
 CREATE TABLE Servico(
 	id_servico INT AUTO_INCREMENT UNIQUE,

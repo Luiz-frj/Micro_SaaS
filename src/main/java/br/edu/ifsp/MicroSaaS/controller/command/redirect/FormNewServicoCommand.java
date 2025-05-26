@@ -13,7 +13,7 @@ public class FormNewServicoCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return null;
+		return "/logged/form_servico_add.jsp";
 	}
 
 }
