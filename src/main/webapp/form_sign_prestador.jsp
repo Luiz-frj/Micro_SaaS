@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro Prestador - AgendaFlex</title>
-  <link rel="icon" href="<%= request.getContextPath() %>/img/favicon.png" type="image/png">
+  <link rel="icon" href="assets/MicroSaasLogo.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 </head>
@@ -18,7 +18,7 @@
         <input type="text" class="form-control" name="name" id="name" required>
       </div>
       <div class="mb-3">
-        <label for="username" class="form-label">Usu·rio</label>
+        <label for="username" class="form-label">Usu√°rio</label>
         <input type="text" class="form-control" name="username" id="username" required>
       </div>
       <div class="mb-3">
