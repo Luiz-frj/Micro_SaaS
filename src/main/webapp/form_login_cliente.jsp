@@ -1,11 +1,11 @@
-<%-- login.jsp --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - AgendaFlex</title>
-  <link rel="icon" href="<%= request.getContextPath() %>/img/favicon.png" type="image/png">
+  <link rel="icon" href="assets/MicroSaasLogo.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
         <input type="password" class="form-control" name="password" id="password" required>
       </div>
       <button type="submit" class="btn btn-primary w-100">Entrar</button>
-      <a href="front.do?action=formSignCliente" >Não possui uma conta, clique para Cadastrar</a>
+      <a href="front.do?action=formSignCliente" >NÃ£o possui uma conta, clique para Cadastrar</a>
     </form>
   </div>
 </body>
