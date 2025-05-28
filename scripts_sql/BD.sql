@@ -4,6 +4,8 @@ CREATE DATABASE IF NOT EXISTS SaaS;
 
 USE SaaS;
 
+SELECT * FROM Servico;
+
 CREATE TABLE Cliente(
 	id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -45,7 +47,7 @@ CREATE TABLE Servico(
     id_prestador INT NOT NULL,
     nome VARCHAR(100) NOT NULL,
     descricao VARCHAR(100),
-    status_servico ENUM('Disponivel', 'Indisponivel') DEFAULT 'Disponivel',
+    status_servico INT NOT NULL,
     local VARCHAR(100),
 
     FOREIGN KEY (id_prestador) REFERENCES Prestador(id_prestador)

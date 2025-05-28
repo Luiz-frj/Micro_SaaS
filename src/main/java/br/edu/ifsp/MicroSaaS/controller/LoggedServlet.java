@@ -2,6 +2,7 @@ package br.edu.ifsp.MicroSaaS.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,8 +10,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import br.edu.ifsp.MicroSaaS.controller.command.*;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.DeleteServicoCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.LoggedHomeCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.LogoffCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.NewAgendamentoCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.NewServicoCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoFilterCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoPagination;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.UpdateAgendamentoCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.UpdateServicoCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.redirect.AgendamentoDetailsCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormNewAgendamentoCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormNewServicoCommand;
@@ -19,6 +27,7 @@ import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormUpdateServicoComman
 import br.edu.ifsp.MicroSaaS.controller.command.redirect.ListAgendamentoCommand;
 
 @WebServlet("/logged.do")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024 * 1024 * 2, maxRequestSize = 1024 * 1024 * 2)
 public class LoggedServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

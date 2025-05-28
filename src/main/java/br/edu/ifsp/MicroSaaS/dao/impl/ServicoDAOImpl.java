@@ -15,7 +15,7 @@ import br.edu.ifsp.MicroSaaS.model.Servico;
 public class ServicoDAOImpl implements ServicoDAO {
 	private static final String INSERT = "INSERT INTO Servico (nome, descricao, id_prestador, status_servico, local) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_BY_ID = "SELECT * FROM Servico WHERE id_servico = ?";
-	private static final String GET_PAGE = "SELECT * FROM Servico ORDER BY ? LIMIT ?, ?;";
+	private static final String GET_PAGE = "SELECT * FROM Servico ORDER BY ? LIMIT ? OFFSET ?;";
 	private static final String GET_BY_ID_PRESTADOR = "SELECT * FROM Servico WHERE id_prestador = ?";
 	private static final String UPDATE = "UPDATE Servico SET nome = ?, descricao = ?, status_servico = ?, local = ? WHERE id_servico = ?;";
 	private static final String DELETE = "DELETE FROM Servico WHERE id_servico = ?";
@@ -132,8 +132,8 @@ public class ServicoDAOImpl implements ServicoDAO {
 			PreparedStatement statement = connection.prepareStatement(GET_PAGE);
 			
 			statement.setString(1, "id_servico");
-			statement.setString(2, Integer.toString(qtd));
-			statement.setString(3, Integer.toString(qtd));
+			statement.setInt(2, qtd);
+			statement.setInt(3, page);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {

@@ -49,7 +49,7 @@ public class PrestadorDAOImpl implements PrestadorDAO {
 			statement.setString(1, email);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				user = new Prestador(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("usuário"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), resultSet.getString("cpf"), resultSet.getString("caminho_img"), false);
+				user = new Prestador(resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("usuário"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), resultSet.getString("cpf"), resultSet.getString("caminho_img"), false);
 			}
 				
 		} catch (SQLException e) {

@@ -1,4 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="br.edu.ifsp.MicroSaaS.model.Servico" %>
+<%@ page import="java.util.HashMap" %>
+<%
+    HashMap<Servico, String> servicos = (HashMap<Servico, String>) request.getAttribute("servico_list");
+	System.out.println(servicos);
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,8 +20,25 @@
 
     <div>
         <h2>Serviços Disponíveis</h2>
-        <div>
-
-        </div>
+        <%
+            if (servicos != null && !servicos.isEmpty()) {
+                for (Servico s : servicos.keySet()) {
+        %>
+            <div class="card">
+                <img src="<%= servicos.get(s) %>" alt="Imagem do serviço">
+                <div class="card-body">
+                    <div class="card-title"><%= s.getName() %></div>
+                    <div class="card-desc"><%= s.getDescription() %></div>
+                    <div class="card-local">Local: <%= s.getLocal() %></div>
+                </div>
+            </div>
+        <%
+                }
+            } else {
+        %>
+            <p>Nenhum serviço encontrado.</p>
+        <%
+            }
+        %>
 </body>
 </html>
