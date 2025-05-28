@@ -39,7 +39,7 @@ public class NewServicoCommand implements Command {
 		String address = request.getParameter("address").toString();
 		
 		try {
-			String uploadPath = System.getProperty("user.home") + "\\MicroSaaS\\uploads";
+			String uploadPath = System.getProperty("user.home") + File.separator + "Micro_SaaS" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "uploads";
 			File uploadDir = new File(uploadPath);
 		    if (!uploadDir.exists()) uploadDir.mkdir();
 		

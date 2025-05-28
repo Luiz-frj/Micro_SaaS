@@ -15,6 +15,7 @@ import br.edu.ifsp.MicroSaaS.controller.command.logged.LoggedHomeCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.LogoffCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.NewAgendamentoCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.NewServicoCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoDetailsCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoFilterCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoPagination;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.UpdateAgendamentoCommand;
@@ -72,6 +73,8 @@ public class LoggedServlet extends HttpServlet {
 			command = new ServicoFilterCommand();
 		} else if("servicoPagination".equals(action)) { 
 			command = new ServicoPagination();
+		} else if("servicoDetails".equals(action)) { 
+			command = new ServicoDetailsCommand();
 		} else {
 			command = new LoggedHomeCommand();
 		}

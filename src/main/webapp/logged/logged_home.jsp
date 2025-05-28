@@ -24,14 +24,16 @@
             if (servicos != null && !servicos.isEmpty()) {
                 for (Servico s : servicos.keySet()) {
         %>
-            <div class="card">
-                <img src="<%= servicos.get(s) %>" alt="Imagem do serviço">
-                <div class="card-body">
-                    <div class="card-title"><%= s.getName() %></div>
-                    <div class="card-desc"><%= s.getDescription() %></div>
-                    <div class="card-local">Local: <%= s.getLocal() %></div>
-                </div>
-            </div>
+        	<a href="logged.do?action=servicoDetails&servico=<%= s.getId() %>">
+	            <div>
+	                <img src="<%= request.getContextPath() %>/uploads/<%= servicos.get(s) %>" alt="Imagem do serviço">
+	                <div>
+	                    <div><%= s.getName() %></div>
+	                    <div><%= s.getDescription() %></div>
+	                    <div>Local: <%= s.getLocal() %></div>
+	                </div>
+	            </div>
+            </a>
         <%
                 }
             } else {

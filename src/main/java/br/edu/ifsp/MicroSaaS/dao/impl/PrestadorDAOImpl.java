@@ -15,6 +15,7 @@ import br.edu.ifsp.MicroSaaS.model.Prestador;
 public class PrestadorDAOImpl implements PrestadorDAO {
 	private static final String INSERT = "INSERT INTO Prestador (nome, email, usuário, telefone, senha, cpf, caminho_img) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_BY_EMAIL = "SELECT * FROM Prestador WHERE email = ?";
+	private static final String GET_BY_ID = "SELECT * FROM Prestador WHERE id_prestador = ?";
 	
 	@Override
 	public boolean insert(Prestador prestador) {
@@ -47,6 +48,26 @@ public class PrestadorDAOImpl implements PrestadorDAO {
 			PreparedStatement statement = connection.prepareStatement(GET_BY_EMAIL)) {
 			
 			statement.setString(1, email);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				user = new Prestador(resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("usuário"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), resultSet.getString("cpf"), resultSet.getString("caminho_img"), false);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+			user = null;
+		} 
+			
+		return user;
+	}
+
+	@Override
+	public Prestador getById(int id) {
+		Prestador user = null;
+		try ( Connection connection = DatabaseConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(GET_BY_ID)) {
+			
+			statement.setInt(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				user = new Prestador(resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("usuário"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), resultSet.getString("cpf"), resultSet.getString("caminho_img"), false);

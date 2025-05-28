@@ -1,5 +1,6 @@
 package br.edu.ifsp.MicroSaaS.controller.command.logged;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class LoggedHomeCommand implements Command{
 		for (Servico s : servicoList) {
 			List<Portifolio> portifolio = portifolioDao.getByIdServico(s.getId());
 			if (!portifolio.isEmpty()) {
-				servicoImagem.put(s, portifolio.get(0).getCaminho_img());
+				servicoImagem.put(s, portifolio.get(0).getCaminho_img().split(File.separator)[portifolio.get(0).getCaminho_img().split(File.separator).length - 1]);
 			}
 		}
 		

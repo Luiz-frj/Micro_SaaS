@@ -51,7 +51,7 @@ public class SignPrestadorCommand implements Command {
 		}
 		String nomeArquivo = UUID.randomUUID().toString() + "_"
 				+ Paths.get(fotoPart.getSubmittedFileName()).getFileName().toString();
-		String uploadPath = "C:\\Users\\guilh\\Documents\\Micro_SaaS\\uploads";
+		String uploadPath = System.getProperty("user.home") + File.separator + "Micro_SaaS" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "uploads";
 		Files.createDirectories(Paths.get(uploadPath));
 		fotoPart.write(uploadPath + File.separator + nomeArquivo);
 		
