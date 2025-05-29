@@ -93,23 +93,3 @@ CREATE TABLE ServicoEspecialidade (
     
     PRIMARY KEY (id_servico, id_especialidade)
 );
-
-SELECT * FROM Agendamento;
-
-SELECT * FROM Especialidade;
-SELECT * FROM PrestadorEspecialidade;
-SELECT * FROM ServicoEspecialidade;
-
-SELECT * FROM Prestador;
-
-SELECT * FROM Servico WHERE local LIKE "%rua%";
-
-INSERT INTO ESPECIALIDADE (nome, descricao) VALUES ("carpintero", "carpinta");
-INSERT INTO PrestadorEspecialidade (id_prestador, id_especialidade) VALUES (1, 1);
-
-SELECT * FROM Servico WHERE LOWER(local) LIKE "%rua%" LIMIT 10 OFFSET 0;
-
-SELECT * FROM Prestador p
-INNER JOIN ServicoEspecialidade se ON p.id_servico=se.id_servico
-INNER JOIN Especialidade e ON pe.id_especialidade=e.id_especialidade
-WHERE e.nome LIKE "%encana%" LIMIT 5 OFFSET 0;

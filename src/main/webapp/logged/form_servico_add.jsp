@@ -11,25 +11,31 @@
     <div>
         <h2>Criar Novo Serviço</h2>
         <form action="logged.do?action=newServico" method="post" enctype="multipart/form-data">
-            <label for="name">Nome do Serviço:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="description">Descrição:</label>
-            <textarea id="description" name="description" required></textarea>
-
-            <label for="address">Local:</label>
-            <input type="text" id="address" name="address" required>
-            
-            <label for="servico_time">Tempo de Servico:</label>
-            <input type="time" id="servico_time" name="servico_time" required>
-            
-            <label for="especialidade">Especialidade:</label>
-            <input type="text" id="especialidade" name="especialidade">
-
-            <label for="images">Imagens do Serviço:</label>
-            <input type="file" id="images" name="images" accept="image/*" multiple required>
-            <p class="note">Você pode selecionar até 5 imagens.</p>
-            
+            <div class="mb-3">
+	            <label for="name"class="form-label">Nome do Serviço:</label>
+	            <input type="text" class="form-control"id="name" name="name" required>
+			</div>
+			<div class="mb-3">
+	            <label for="description"class="form-label">Descrição:</label>
+	            <textarea class="form-control"id="description" name="description" required></textarea>
+			</div>
+			<div class="mb-3">
+	            <label for="address"class="form-label">Local:</label>
+	            <input type="text" class="form-control"id="address" name="address" required>
+            </div>
+            <div class="mb-3">
+	            <label for="servico_time"class="form-label">Tempo de Servico:</label>
+	            <input type="time" class="form-control"id="servico_time" name="servico_time" required>
+            </div>
+            <div class="mb-3">
+	            <label for="especialidade"class="form-label">Especialidade:</label>
+	            <input type="text" class="form-control"id="especialidade" name="especialidade">
+			</div>
+			<div class="mb-3">
+            	<label for="images"class="form-label">Imagens do Serviço:</label>
+            	<input type="file" class="form-control"id="images" name="images" accept="image/*" multiple required>
+            	<p class="note">Você pode selecionar até 5 imagens.</p>
+            </div>
             <h2 class="mb-4">Disponibilidade Semanal</h2>
             <table class="table table-bordered text-center align-middle">
 	            <thead class="table-light">
@@ -37,8 +43,8 @@
 	                    <th>Dia da Semana</th>
 	                    <th>Início</th>
 	                    <th>Término</th>
-	                    <th>Almoço (Início)</th>
-	                    <th>Almoço (Fim)</th>
+	                    <th>Descanso (Início)</th>
+	                    <th>Descanso (Fim)</th>
 	                </tr>
 	            </thead>
 	            <tbody>

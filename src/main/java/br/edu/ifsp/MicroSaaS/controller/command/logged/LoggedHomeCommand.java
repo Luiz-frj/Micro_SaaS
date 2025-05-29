@@ -78,8 +78,6 @@ public class LoggedHomeCommand implements Command{
 		
 		request.setAttribute("servico_list", servicoImagem);
 		
-		System.out.println("AQUI");
-		
 		return "/logged/logged_home.jsp";
 	}
 	
