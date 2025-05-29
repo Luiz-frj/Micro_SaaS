@@ -36,6 +36,13 @@
                 </div>
             </div>
         </div>
+        <%for(String i : images) {%>
+        <div class="row g-0">
+            <div class="col-md-5">
+                <img src="<%= request.getContextPath() %>/uploads/<%= i %>" class="img-fluid rounded-start" alt="Imagem do Serviço">
+            </div>
+        </div>
+        <% }%>
     </div>
 </div>
 

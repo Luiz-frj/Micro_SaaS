@@ -126,7 +126,7 @@ public class NewAgendamentoCommand implements Command {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return "logged.do?action=home";
 	}
 
 }

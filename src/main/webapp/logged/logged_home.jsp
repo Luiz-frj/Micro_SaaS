@@ -53,5 +53,12 @@
         <%
             }
         %>
+        <form action="logged.do?action=home" method="post">
+        	<div class="mb-3">
+        <label for="page" class="form-label">Página</label>
+        <input type="text" class="form-control" name="page" id="page">
+        <button type="submit" class="btn btn-primary w-100">Ir</button>
+      </div>
+        </form>
 </body>
 </html>
