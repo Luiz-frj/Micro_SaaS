@@ -18,8 +18,8 @@ import br.edu.ifsp.MicroSaaS.controller.command.logged.NewServicoCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoDetailsCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoFilterCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.ServicoPagination;
-import br.edu.ifsp.MicroSaaS.controller.command.logged.UpdateAgendamentoCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.logged.UpdateServicoCommand;
+import br.edu.ifsp.MicroSaaS.controller.command.logged.UpdateStatusAgendamento;
 import br.edu.ifsp.MicroSaaS.controller.command.redirect.AgendamentoDetailsCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormNewAgendamentoCommand;
 import br.edu.ifsp.MicroSaaS.controller.command.redirect.FormNewServicoCommand;
@@ -55,8 +55,8 @@ public class LoggedServlet extends HttpServlet {
 			command = new UpdateServicoCommand();
 		} else if("deleteServico".equals(action)) { 
 			command = new DeleteServicoCommand();
-		} else if("updateAgendamento".equals(action)) { 
-			command = new UpdateAgendamentoCommand();
+		} else if("updateStatusAgendamento".equals(action)) { 
+			command = new UpdateStatusAgendamento();
 		} else if("formNewAgendamento".equals(action)) { 
 			command = new FormNewAgendamentoCommand();
 		} else if("formNewServico".equals(action)) { 

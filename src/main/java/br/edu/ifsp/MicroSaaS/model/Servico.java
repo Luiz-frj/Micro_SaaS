@@ -7,6 +7,14 @@ public class Servico {
 	private String description;
 	private int status_servico;
 	private String local;
+	private int tempo_servico;
+	
+	public int getTempo_servico() {
+		return tempo_servico;
+	}
+	private void setTempo_servico(int tempo_servico) {
+		this.tempo_servico = tempo_servico;
+	}
 	public int getId() {
 		return id;
 	}
@@ -43,21 +51,23 @@ public class Servico {
 	private void setLocal(String local) {
 		this.local = local;
 	}
-	public Servico(int id_prestador, String name, String description, int status_servico, String local) {
+	public Servico(int id_prestador, String name, String description, int status_servico, String local, int tempo_servico) {
 		setId_prestador(id_prestador);
 		setName(name);
 		setDescription(description);
 		setStatus_servico(status_servico);
 		setLocal(local);
+		setTempo_servico(tempo_servico);
 	}
 	
-	public Servico(int id_servico, int id_prestador, String name, String description, int status_servico, String local) {
+	public Servico(int id_servico, int id_prestador, String name, String description, int status_servico, String local, int tempo_servico) {
 		setId(id_servico);
 		setId_prestador(id_prestador);
 		setName(name);
 		setDescription(description);
 		setStatus_servico(status_servico);
 		setLocal(local);
+		setTempo_servico(tempo_servico);
 	}
 	
 	@Override

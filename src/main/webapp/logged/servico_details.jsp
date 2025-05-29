@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="/includes/navbar.jsp"/>
 
 <div class="container py-5">
     <div class="card shadow-lg">
@@ -28,8 +29,10 @@
                     <h3 class="card-title mb-3"><%= servico.getName()%></h3>
                     <p class="card-text"><%= servico.getDescription()%></p>
                     <p class="card-text"><strong>Local:</strong> <%= servico.getLocal() %></p>
-                    <p class="card-text"><strong>Responsável:</strong> <%= prestador.getName()%></p>
-                    <a href="listar_servicos.jsp" class="btn btn-secondary mt-3">Voltar para lista</a>
+                    <p class="card-text"><strong>Prestador:</strong> <%= prestador.getName()%></p>
+                    <p class="card-text"><strong>Tempo de Servico:</strong><%= servico.getTempo_servico() %></p>
+                    <a href="logged.do?action=formNewAgendamento&servico=<%= servico.getId()%>" class="btn btn-secondary mt-3">Agendar</a>
+                    <a href="logged.do?action=home" class="btn btn-secondary mt-3">Voltar para lista</a>
                 </div>
             </div>
         </div>

@@ -69,6 +69,19 @@ public class Cliente {
 			setPassword(password);
 		}
 	}
+	
+	public Cliente(int id_cliente, String name, String address, String email, String phone, String password, Boolean newClient) {
+		setId(id_cliente);
+		setName(name);
+		setAddress(address);
+		setEmail(email);
+		setPhone(phone);
+		if (newClient) {
+			setPassword(sha256(password));
+		} else {
+			setPassword(password);
+		}
+	}
 
 	public Boolean verify(String password) {
 		if (sha256(password).equals(this.password)) {

@@ -47,6 +47,7 @@ CREATE TABLE Servico(
     descricao VARCHAR(100),
     status_servico INT NOT NULL,
     local VARCHAR(100),
+    tempo_servico INT NOT NULL,
 
     FOREIGN KEY (id_prestador) REFERENCES Prestador(id_prestador)
 );
@@ -76,10 +77,39 @@ CREATE TABLE Agendamento(
 	id_agendamento INT PRIMARY KEY AUTO_INCREMENT,
     id_servico INT NOT NULL,
     id_cliente INT NOT NULL,
-    status_agendamento ENUM('Ativo', 'Finalizado', 'Cancelado') DEFAULT 'Ativo',
+    status_agendamento INT NOT NULL,
     horario DATETIME,
     
     FOREIGN KEY (id_servico) REFERENCES Servico(id_servico),
     FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
 );
 
+CREATE TABLE ServicoEspecialidade (
+	id_servico INT NOT NULL,
+    id_especialidade INT NOT NULL,
+    
+    FOREIGN KEY (id_servico) REFERENCES Servico(id_servico),
+    FOREIGN KEY (id_especialidade) REFERENCES Especialidade(id_especialidade),
+    
+    PRIMARY KEY (id_servico, id_especialidade)
+);
+
+SELECT * FROM Agendamento;
+
+SELECT * FROM Especialidade;
+SELECT * FROM PrestadorEspecialidade;
+SELECT * FROM ServicoEspecialidade;
+
+SELECT * FROM Prestador;
+
+SELECT * FROM Servico WHERE local LIKE "%rua%";
+
+INSERT INTO ESPECIALIDADE (nome, descricao) VALUES ("carpintero", "carpinta");
+INSERT INTO PrestadorEspecialidade (id_prestador, id_especialidade) VALUES (1, 1);
+
+SELECT * FROM Servico WHERE LOWER(local) LIKE "%rua%" LIMIT 10 OFFSET 0;
+
+SELECT * FROM Prestador p
+INNER JOIN ServicoEspecialidade se ON p.id_servico=se.id_servico
+INNER JOIN Especialidade e ON pe.id_especialidade=e.id_especialidade
+WHERE e.nome LIKE "%encana%" LIMIT 5 OFFSET 0;

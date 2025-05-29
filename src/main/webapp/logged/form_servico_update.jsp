@@ -4,79 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Criar Serviço</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 40px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        input[type="file"] {
-            margin-top: 8px;
-        }
-
-        .note {
-            font-size: 12px;
-            color: #777;
-        }
-
-        button {
-            margin-top: 25px;
-            width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <body>
-
+<jsp:include page="/includes/navbar.jsp"/>
     <div class="container">
         <h2>Criar Novo Serviço</h2>
         <form action="SalvarServicoServlet" method="post" enctype="multipart/form-data">

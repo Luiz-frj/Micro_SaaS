@@ -1,10 +1,12 @@
 package br.edu.ifsp.MicroSaaS.model;
 
+import java.time.LocalDate;
+
 public class Agendamento {
 	private int id;
 	private int id_servico;
 	private int id_cliente;
-	private String status_agendamento;
+	private int status_agendamento;
 	private String horario;
 	
 	public int getId() {
@@ -25,10 +27,10 @@ public class Agendamento {
 	private void setId_cliente(int id_cliente) {
 		this.id_cliente = id_cliente;
 	}
-	public String getStatus_agendamento() {
+	public int getStatus_agendamento() {
 		return status_agendamento;
 	}
-	private void setStatus_agendamento(String status_agendamento) {
+	private void setStatus_agendamento(int status_agendamento) {
 		this.status_agendamento = status_agendamento;
 	}
 	public String getHorario() {
@@ -38,7 +40,26 @@ public class Agendamento {
 		this.horario = horario;
 	}
 	
-	public Agendamento(int id, int id_servico, int id_cliente, String status_agendamento, String horario) {
+	public LocalDate getData() {
+		return LocalDate.parse(horario.split(" ")[0]);
+	}
+	
+	public String getTrueStatusAgendamento() {
+		switch(status_agendamento) {
+			case 0: 
+				return "Em espera";
+			case 1:
+				return "Ativo";
+			case 2:
+				return "Finalizado";
+			case 3:
+				return "Cancelado";
+			default:
+				return "Erro";
+		}
+	}
+	
+	public Agendamento(int id, int id_servico, int id_cliente, int status_agendamento, String horario) {
 		setId(id);
 		setId_servico(id_servico);
 		setId_cliente(id_cliente);
@@ -46,7 +67,7 @@ public class Agendamento {
 		setHorario(horario);
 	}
 	
-	public Agendamento(int id_servico, int id_cliente, String status_agendamento, String horario) {
+	public Agendamento(int id_servico, int id_cliente, int status_agendamento, String horario) {
 		setId_servico(id_servico);
 		setId_cliente(id_cliente);
 		setStatus_agendamento(status_agendamento);

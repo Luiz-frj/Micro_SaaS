@@ -12,8 +12,13 @@ public class FormNewAgendamentoCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		String servico_id = request.getParameter("servico");
+		
+		request.setAttribute("servico", servico_id);
+		
+		System.out.println(servico_id);
+		
+		return "/logged/agendar_cliente.jsp";
 	}
 
 }

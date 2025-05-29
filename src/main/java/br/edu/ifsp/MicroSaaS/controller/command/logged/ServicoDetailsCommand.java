@@ -29,9 +29,6 @@ public class ServicoDetailsCommand implements Command {
 		PortifolioDAO portifolioDAO = new PortifolioDAOFactory().factory();
 		
 		String id_servico = request.getParameter("servico");
-		
-		System.out.println(id_servico);
-		
 		Servico servico = dao.getById(Integer.parseInt(id_servico));
 		
 		if (servico != null) {
@@ -41,7 +38,8 @@ public class ServicoDetailsCommand implements Command {
 				List<String> images = new ArrayList<>();
 				if (!portifolio.isEmpty()) {
 					for (Portifolio p : portifolio) {
-						images.add(p.getCaminho_img().split(File.separator)[p.getCaminho_img().split(File.separator).length - 1]);
+						String splitter = File.separator.replace("\\","\\\\");
+						images.add(p.getCaminho_img().split(splitter)[p.getCaminho_img().split(splitter).length - 1]);
 					}
 				}
 				request.setAttribute("images", images);

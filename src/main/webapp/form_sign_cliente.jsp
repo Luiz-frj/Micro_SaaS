@@ -18,7 +18,7 @@
         <input type="text" class="form-control" name="name" id="name" required>
       </div>
       <div class="mb-3">
-        <label for="username" class="form-label">Endereco</label>
+        <label for="address" class="form-label">Endereco</label>
         <input type="text" class="form-control" name="address" id="address" required>
       </div>
       <div class="mb-3">

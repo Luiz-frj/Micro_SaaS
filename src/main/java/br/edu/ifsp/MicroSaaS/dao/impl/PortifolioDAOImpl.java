@@ -84,12 +84,11 @@ public class PortifolioDAOImpl implements PortifolioDAO {
 			
 			PreparedStatement statement = connection.prepareStatement(GET_BY_ID_SERVICO);
 			
-			statement.setString(1, Integer.toString(id_servico));
+			statement.setInt(1, id_servico);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
 				Portifolio portifolio = new Portifolio(resultSet.getInt("id_img"), resultSet.getInt("id_servico"), resultSet.getString("caminho_img"));
-				
 				list.add(portifolio);
 			}
 		} catch (SQLException e) {

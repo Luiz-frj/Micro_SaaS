@@ -47,7 +47,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 			statement.setString(1, email);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				user = new Cliente(resultSet.getString("nome"), resultSet.getString("endereco"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), false);
+				user = new Cliente(resultSet.getInt("id_cliente"), resultSet.getString("nome"), resultSet.getString("endereco"), resultSet.getString("email"), resultSet.getString("telefone"), resultSet.getString("senha"), false);
 			}
 				
 		} catch (SQLException e) {

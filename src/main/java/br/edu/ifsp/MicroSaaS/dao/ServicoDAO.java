@@ -2,6 +2,7 @@ package br.edu.ifsp.MicroSaaS.dao;
 
 import java.util.List;
 
+import br.edu.ifsp.MicroSaaS.model.Prestador;
 import br.edu.ifsp.MicroSaaS.model.Servico;
 
 public interface ServicoDAO {
@@ -11,4 +12,5 @@ public interface ServicoDAO {
 	Servico getById(int id);
 	List<Servico> getByIdPrestador(int id);
 	List<Servico> getPage(int page, int qtd);
+	List<Servico> getByLocal(String local, int page, int qtd);
 }

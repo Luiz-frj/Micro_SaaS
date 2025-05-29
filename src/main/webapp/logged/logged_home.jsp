@@ -3,7 +3,6 @@
 <%@ page import="java.util.HashMap" %>
 <%
     HashMap<Servico, String> servicos = (HashMap<Servico, String>) request.getAttribute("servico_list");
-	System.out.println(servicos);
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,6 +16,18 @@
 </head>
 <body>
 	<jsp:include page="/includes/navbar.jsp"/>
+	
+	<form action="logged.do?action=home" method="post">
+      <div class="mb-3">
+        <label for="local" class="form-label">Local</label>
+        <input type="text" class="form-control" name="local" id="local">
+      </div>
+      <div class="mb-3">
+        <label for="especialidade" class="form-label">Especialidade</label>
+        <input type="text" class="form-control" name="especialidade" id="especialidade">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
+    </form>
 
     <div>
         <h2>Serviços Disponíveis</h2>

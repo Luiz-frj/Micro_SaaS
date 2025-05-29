@@ -13,12 +13,13 @@ import br.edu.ifsp.MicroSaaS.model.Prestador;
 import br.edu.ifsp.MicroSaaS.model.Servico;
 
 public class ServicoDAOImpl implements ServicoDAO {
-	private static final String INSERT = "INSERT INTO Servico (nome, descricao, id_prestador, status_servico, local) VALUES (?, ?, ?, ?, ?)";
+	private static final String INSERT = "INSERT INTO Servico (nome, descricao, id_prestador, status_servico, local, tempo_servico) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String GET_BY_ID = "SELECT * FROM Servico WHERE id_servico = ?";
 	private static final String GET_PAGE = "SELECT * FROM Servico ORDER BY ? LIMIT ? OFFSET ?;";
 	private static final String GET_BY_ID_PRESTADOR = "SELECT * FROM Servico WHERE id_prestador = ?";
 	private static final String UPDATE = "UPDATE Servico SET nome = ?, descricao = ?, status_servico = ?, local = ? WHERE id_servico = ?;";
 	private static final String DELETE = "DELETE FROM Servico WHERE id_servico = ?";
+	private static final String GET_BY_LOCAL = "SELECT * FROM Servico WHERE LOWER(local) LIKE ? LIMIT ? OFFSET ?;";
 
 	@Override
 	public boolean insert(Servico servico) {
@@ -32,6 +33,7 @@ public class ServicoDAOImpl implements ServicoDAO {
 				statement.setString(3, Integer.toString(servico.getId_prestador()));
 				statement.setString(4, Integer.toString(servico.getStatus_servico()));
 				statement.setString(5, servico.getLocal());
+				statement.setInt(6, servico.getTempo_servico());
 				
 				rows = statement.executeUpdate();
 				
@@ -90,7 +92,7 @@ public class ServicoDAOImpl implements ServicoDAO {
 			statement.setString(1, Integer.toString(id));
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				servico = new Servico(resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("descricao"), resultSet.getInt("status_servico"), resultSet.getString("local"));
+				servico = new Servico(resultSet.getInt("id_servico"), resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("descricao"), resultSet.getInt("status_servico"), resultSet.getString("local"), resultSet.getInt("tempo_servico"));
 			}
 				
 		} catch (SQLException e) {
@@ -113,7 +115,7 @@ public class ServicoDAOImpl implements ServicoDAO {
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				Servico servico = new Servico(resultSet.getInt("id_servico"), resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("descricao"), resultSet.getInt("status_servico"), resultSet.getString("local"));
+				Servico servico = new Servico(resultSet.getInt("id_servico"), resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("descricao"), resultSet.getInt("status_servico"), resultSet.getString("local"), resultSet.getInt("tempo_servico"));
 				
 				list.add(servico);
 			}
@@ -133,11 +135,34 @@ public class ServicoDAOImpl implements ServicoDAO {
 			
 			statement.setString(1, "id_servico");
 			statement.setInt(2, qtd);
-			statement.setInt(3, page);
+			statement.setInt(3, page * qtd);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				Servico servico = new Servico(resultSet.getInt("id_servico"), resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("descricao"), resultSet.getInt("status_servico"), resultSet.getString("local"));
+				Servico servico = new Servico(resultSet.getInt("id_servico"), resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("descricao"), resultSet.getInt("status_servico"), resultSet.getString("local"), resultSet.getInt("tempo_servico"));
+				list.add(servico);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Servico> getByLocal(String local, int page, int qtd) {
+		List<Servico> list = new ArrayList<>();
+		try {
+			Connection connection = DatabaseConnection.getConnection();
+			
+			PreparedStatement statement = connection.prepareStatement(GET_BY_LOCAL);
+			
+			statement.setString(1, "%" + local + "%");
+			statement.setInt(2, qtd);
+			statement.setInt(3, page * qtd);
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				Servico servico = new Servico(resultSet.getInt("id_servico"), resultSet.getInt("id_prestador"), resultSet.getString("nome"), resultSet.getString("descricao"), resultSet.getInt("status_servico"), resultSet.getString("local"), resultSet.getInt("tempo_servico"));
 				list.add(servico);
 			}
 		} catch (SQLException e) {

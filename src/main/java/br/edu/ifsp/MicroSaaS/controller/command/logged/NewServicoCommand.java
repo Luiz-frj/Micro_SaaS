@@ -10,12 +10,18 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 import br.edu.ifsp.MicroSaaS.controller.command.Command;
+import br.edu.ifsp.MicroSaaS.dao.DisponibilidadeDAO;
+import br.edu.ifsp.MicroSaaS.dao.EspecialidadeDAO;
 import br.edu.ifsp.MicroSaaS.dao.PortifolioDAO;
 import br.edu.ifsp.MicroSaaS.dao.ServicoDAO;
 import br.edu.ifsp.MicroSaaS.model.Cliente;
 import br.edu.ifsp.MicroSaaS.model.Prestador;
 import br.edu.ifsp.MicroSaaS.model.Servico;
+import br.edu.ifsp.MicroSaaS.model.Disponibilidade;
+import br.edu.ifsp.MicroSaaS.model.Especialidade;
 import br.edu.ifsp.MicroSaaS.model.Portifolio;
+import br.edu.ifsp.MicroSaaS.dao.factory.DisponibilidadeDAOFactory;
+import br.edu.ifsp.MicroSaaS.dao.factory.EspecialidadeDAOFactory;
 import br.edu.ifsp.MicroSaaS.dao.factory.PortifolioDAOFactory;
 import br.edu.ifsp.MicroSaaS.dao.factory.ServicoDAOFactory;
 import jakarta.servlet.ServletException;
@@ -32,11 +38,15 @@ public class NewServicoCommand implements Command {
 		HttpSession session = request.getSession(false);
 			
 		ServicoDAO servicoDao = new ServicoDAOFactory().factory();
+		DisponibilidadeDAO disponibilidadeDao = new DisponibilidadeDAOFactory().factory();
 		PortifolioDAO portifolioDao = new PortifolioDAOFactory().factory();
+		EspecialidadeDAO especialidadeDao = new EspecialidadeDAOFactory().factory();
 			
 		String name = request.getParameter("name").toString();
 		String description = request.getParameter("description").toString();
 		String address = request.getParameter("address").toString();
+		String servico_time = request.getParameter("servico_time").toString();
+		String especialidade_name = request.getParameter("especialidade");
 		
 		try {
 			String uploadPath = System.getProperty("user.home") + File.separator + "Micro_SaaS" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "uploads";
@@ -66,7 +76,7 @@ public class NewServicoCommand implements Command {
 		        try {
 		        	Prestador user = (Prestador) session.getAttribute("user");
 			        
-			        Servico servico = new Servico(user.getId(), name, description, 1, address);
+			        Servico servico = new Servico(user.getId(), name, description, 1, address, Integer.parseInt(servico_time.toString().split(":")[0]) + (Integer.parseInt(servico_time.toString().split(":")[1])/60));
 			        servicoDao.insert(servico);
 			        
 			        List<Servico> servico_list = servicoDao.getByIdPrestador(user.getId());
@@ -77,12 +87,36 @@ public class NewServicoCommand implements Command {
 			        		if (s.getDescription().equals(description)) {
 			        			if (s.getLocal().equals(address)) {
 			        				servico_id = s.getId();
-			        				System.out.println(servico_id);
 			        			}
 			        		}
 			        	}
 			        }
 			        if (servico_id != -1) {
+			        	if (especialidade_name != null) {
+				        	List<Especialidade> especialidades = especialidadeDao.getByName(especialidade_name);
+				        	if (!especialidades.isEmpty()) {
+				        		especialidadeDao.insertServicoEspecialidade(especialidades.get(0), servico_id);
+				        	} else {
+				        		Especialidade new_especialidade = new Especialidade(especialidade_name, "");
+				        		especialidadeDao.insert(new_especialidade);
+				        		
+				        		especialidadeDao.insertServicoEspecialidade(new_especialidade, servico_id);
+				        	}
+				        }
+			        	for (int i = 0; i < 7; i++) {
+			    	        String inicio = request.getParameter("inicio_" + i);
+			    	        String fim = request.getParameter("fim_" + i);
+			    	        String almocoInicio = request.getParameter("almoco_inicio_" + i);
+			    	        String almocoFim = request.getParameter("almoco_fim_" + i);
+			    	        
+			    	        if (inicio != null && fim != null && almocoInicio != null && almocoFim != null) {
+			    	        	if (!inicio.isEmpty() && !fim.isEmpty() && !almocoInicio.isEmpty() && !almocoFim.isEmpty()) {
+			    	        		Disponibilidade disponibilidade = new Disponibilidade(servico_id, i, almocoInicio + ":00", almocoFim + ":00", inicio + ":00", fim + ":00");
+			    	        		disponibilidadeDao.insert(disponibilidade);
+			    	        	}
+			    	        }
+			    	        System.out.println("Dia " + i + ": " + inicio + " - " + fim + " | Almoço: " + almocoInicio + " - " + almocoFim);
+			    	    }
 				        for (String p : images) {
 				        	Portifolio portifolio = new Portifolio(servico_id, p);
 				        	portifolioDao.insert(portifolio);

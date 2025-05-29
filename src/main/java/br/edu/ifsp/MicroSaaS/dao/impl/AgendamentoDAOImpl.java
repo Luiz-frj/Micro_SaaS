@@ -27,9 +27,9 @@ public class AgendamentoDAOImpl implements AgendamentoDAO {
 			try(Connection connection = DatabaseConnection.getConnection();
 				PreparedStatement statement = connection.prepareStatement(INSERT)){
 				
-				statement.setString(1, Integer.toString(agendamento.getId_servico()));
-				statement.setString(2, Integer.toString(agendamento.getId_cliente()));
-				statement.setString(3, agendamento.getStatus_agendamento());
+				statement.setInt(1, agendamento.getId_servico());
+				statement.setInt(2, agendamento.getId_cliente());
+				statement.setInt(3, agendamento.getStatus_agendamento());
 				statement.setString(4, agendamento.getHorario());
 				
 				rows = statement.executeUpdate();
@@ -48,9 +48,9 @@ public class AgendamentoDAOImpl implements AgendamentoDAO {
 			try(Connection connection = DatabaseConnection.getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE)){
 				
-				statement.setString(1, agendamento_novo.getStatus_agendamento());
+				statement.setInt(1, agendamento_novo.getStatus_agendamento());
 				statement.setString(2, agendamento_novo.getHorario());
-				statement.setString(3, Integer.toString(agendamento_atual.getId()));
+				statement.setInt(3, agendamento_atual.getId());
 				
 				rows = statement.executeUpdate();
 			}catch(SQLException e) {
@@ -68,11 +68,11 @@ public class AgendamentoDAOImpl implements AgendamentoDAO {
 			
 			PreparedStatement statement = connection.prepareStatement(GET_BY_ID_SERVICO);
 			
-			statement.setString(1, Integer.toString(id_servico));
+			statement.setInt(1, id_servico);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				Agendamento agendamento = new Agendamento(resultSet.getInt("id_agendamento"), resultSet.getInt("id_servico"), resultSet.getInt("id_cliente"), resultSet.getString("status_agendamento"), resultSet.getString("horario"));
+				Agendamento agendamento = new Agendamento(resultSet.getInt("id_agendamento"), resultSet.getInt("id_servico"), resultSet.getInt("id_cliente"), resultSet.getInt("status_agendamento"), resultSet.getString("horario"));
 				
 				list.add(agendamento);
 			}
@@ -90,11 +90,11 @@ public class AgendamentoDAOImpl implements AgendamentoDAO {
 			
 			PreparedStatement statement = connection.prepareStatement(GET_BY_ID_CLIENTE);
 			
-			statement.setString(1, Integer.toString(id_cliente));
+			statement.setInt(1, id_cliente);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				Agendamento agendamento = new Agendamento(resultSet.getInt("id_agendamento"), resultSet.getInt("id_servico"), resultSet.getInt("id_cliente"), resultSet.getString("status_agendamento"), resultSet.getString("horario"));
+				Agendamento agendamento = new Agendamento(resultSet.getInt("id_agendamento"), resultSet.getInt("id_servico"), resultSet.getInt("id_cliente"), resultSet.getInt("status_agendamento"), resultSet.getString("horario"));
 				
 				list.add(agendamento);
 			}
@@ -110,10 +110,10 @@ public class AgendamentoDAOImpl implements AgendamentoDAO {
 		try ( Connection connection = DatabaseConnection.getConnection();
 			PreparedStatement statement = connection.prepareStatement(GET_BY_ID)) {
 			
-			statement.setString(1, Integer.toString(id));
+			statement.setInt(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				agendamento = new Agendamento(resultSet.getInt("id_agendamento"), resultSet.getInt("id_servico"), resultSet.getInt("id_cliente"), resultSet.getString("status_agendamento"), resultSet.getString("horario"));
+				agendamento = new Agendamento(resultSet.getInt("id_agendamento"), resultSet.getInt("id_servico"), resultSet.getInt("id_cliente"), resultSet.getInt("status_agendamento"), resultSet.getString("horario"));
 			}
 				
 		} catch (SQLException e) {
